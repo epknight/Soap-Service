@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://rpi-white.com/mss/message/createnbaplayer" xmlns:mssext="http://rpi-white.com/mss/message/createnbaplayer" targetNamespace="http://rpi-white.com/mss/message/createnbaplayer">
+
+	<xs:element name="CreateNBAPlayerRequest" type="mssext:RequestMessage_MasterType"/>
+	
+	<xs:element name="RequestMessage_MasterType" type="RequestMessage_MasterType"/>
+	
+	<xs:complexType name="RequestMessage_MasterType">
+		<xs:sequence>
+			<xs:element name="plyr" type="CreateNBAPlayer_MasterType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CreateNBAPlayer_MasterType" type="CreateNBAPlayer_MasterType"/>
+	<xs:complexType name="CreateNBAPlayer_MasterType">
+		<xs:all>
+			<xs:element name="playerId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="FstName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Player First Name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LstName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Player Last Name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Position" type="Position_MasterType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Height" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Player height</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="College" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name of college attended</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TeamName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name of the basketball team this player is a member of</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:simpleType name="Position_MasterType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Center"/>
+			<xs:enumeration value="Point Guard"/>
+			<xs:enumeration value="Power Forward"/>
+			<xs:enumeration value="Shooting Guard"/>
+			<xs:enumeration value="Small Forward"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="CreateNBAPlayerResponse" type="mssext:ResponseMessage_MasterType"/>
+	<xs:element name="ResponseMessage_MasterType" type="ResponseMessage_MasterType"/>
+	<xs:complexType name="ResponseMessage_MasterType">
+		<xs:sequence>
+			<xs:element name="plyr" type="Player_MasterType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Player_MasterType" type="Player_MasterType"/>
+	<xs:complexType name="Player_MasterType">
+		<xs:sequence>
+			<xs:element name="PlayerId" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Player Id for the Player account created</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

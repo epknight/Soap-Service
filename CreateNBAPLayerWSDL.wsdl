@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="CreateNBAPlayerWSDL" targetNamespace="http://rpi-white.com/mss/contract/createnbaplayer"  xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"  xmlns:mssext="http://rpi-white.com/mss/message/createnbaplayer" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:msscon="http://rpi-white.com/mss/contract/createnbaplayer" >
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+			<xs:import namespace="http://rpi-white.com/mss/message/createnbaplayer" schemaLocation="CreateNBAPlayer.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="CreateNBAPlayerResponse">
+		<wsdl:part name="body" element="mssext:CreateNBAPlayerResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="CreateNBAPlayerRequest">
+		<wsdl:part name="body" element="mssext:CreateNBAPlayerRequest"/>
+	</wsdl:message>
+	
+	<wsdl:portType name="CreateNBAPlayerPortTypeSOAP">
+		<wsdl:operation name="CreateNBAPlayerRequest">
+			<wsdl:input name="Request1" message="msscon:CreateNBAPlayerRequest"/>
+			<wsdl:output name="Response1" message="msscon:CreateNBAPlayerResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<wsdl:binding name="CreateNBAPlayerBindingSOAP" type="msscon:CreateNBAPlayerPortTypeSOAP">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="CreateNBAPlayerRequest">
+			<soap:operation soapAction="CreateNBAPlayer" style="document"/>
+			<wsdl:input name="Request1">
+				<soap:body parts="body" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="Response1">
+				<soap:body parts="body" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+			
+	<wsdl:service name="CreateNBAPlayer">
+		<wsdl:port name="CreateNBAPLayerPortTypeSOAP" binding="msscon:CreateNBAPlayerBindingSOAP">
+			<soap:address location="http://www.wmb.rpi-white.com/Service/mss/CreateNBAPlayer"/>
+		</wsdl:port>
+	</wsdl:service>
+	
+</wsdl:definitions>	
