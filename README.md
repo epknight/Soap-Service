@@ -1,2 +1,2 @@
-# Soap Message
-Simple Soap Message Example
+# Soap Service 
+Simple Soap Service Example
